@@ -1,3 +1,6 @@
+/* ===================== */
+/* RESET & GLOBAL STYLES */
+/* ===================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,6 +12,9 @@ body {
   background-color: #f8f9fa;
 }
 
+/* ===================== */
+/* NAVIGATION BAR */
+/* ===================== */
 nav {
   display: flex;
   justify-content: space-between;
@@ -22,6 +28,7 @@ nav {
   max-width: 100vw;
 }
 
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -32,26 +39,29 @@ nav {
   font-size: clamp(10px, 1.6vw, 20px);
   white-space: nowrap;
   flex-shrink: 1;
-  min-width: 0; 
+  min-width: 0;
 }
 
 .logo img {
-  height: clamp(25px, 5vw, 70px); 
+  height: clamp(25px, 5vw, 70px);
   width: auto;
   display: block;
 }
 
+/* Nav links */
 .nav-links {
   display: flex;
   justify-content: center;
   flex: 1;
-  gap: clamp(6px, 2vw, 30px); 
+  gap: clamp(6px, 2vw, 30px);
   list-style: none;
   white-space: nowrap;
   min-width: 0;
   flex-shrink: 1;
+  transition: left 0.3s ease;
 }
 
+/* Nav links - Desktop */
 .nav-links li a {
   text-decoration: none;
   color: #1c95eb;
@@ -64,6 +74,7 @@ nav {
   color: #0054ad;
 }
 
+/* CTA button */
 .cta {
   flex-shrink: 1;
   display: flex;
@@ -76,7 +87,7 @@ nav {
   align-items: center;
   gap: clamp(3px, 0.8vw, 8px);
   padding: clamp(6px, 1.2vw, 14px) clamp(10px, 1.6vw, 20px);
-  font-size: clamp(8px, 1.3vw, 16px); 
+  font-size: clamp(8px, 1.3vw, 16px);
   background-color: #30ce27;
   color: #fff;
   border: none;
@@ -96,43 +107,38 @@ nav {
   width: auto;
 }
 
+/* Burger menu */
 .burger {
-  display: none; /* Caché sur PC */
+  display: none;
   font-size: 28px;
   color: #1c95eb;
   cursor: pointer;
   user-select: none;
   transition: transform 0.3s;
+  z-index: 1001;
 }
 
 .burger.open {
-  transform: rotate(90deg); /* effet visuel d’ouverture */
+  transform: rotate(90deg);
 }
 
-/* ==== VERSION MOBILE AMÉLIORÉE ==== */
+/* ===================== */
+/* MOBILE STYLES <= 768px */
+/* ===================== */
 @media (max-width: 768px) {
+
   nav {
-    justify-content: space-between;
     padding: 8px 16px;
   }
 
-  /* Bouton burger plus petit et mieux centré */
+  /* Burger menu visible */
   .burger {
     display: block;
-    font-size: 22px; /* Taille plus équilibrée */
-    color: #1c95eb;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1001;
-    transition: transform 0.3s;
+    font-size: 22px;
     padding: 4px;
   }
 
-  .burger.open {
-    transform: rotate(90deg);
-  }
-
-  /* Le menu principal (slide gauche) */
+  /* Nav links slide menu */
   .nav-links {
     position: fixed;
     top: 0;
@@ -146,7 +152,6 @@ nav {
     align-items: flex-start;
     gap: 25px;
     padding: 50px 30px;
-    transition: left 0.3s ease;
     box-shadow: 2px 0 8px rgba(0,0,0,0.2);
     z-index: 1000;
   }
@@ -164,18 +169,18 @@ nav {
     color: #30ce27;
   }
 
-  /* Logo centré, taille ajustée */
+  /* Logo centered */
   .logo {
     margin: 0 auto;
     font-size: 14px;
   }
 
   .logo img {
-    height: 45px; /* Taille réduite sur mobile */
+    height: 45px;
     width: auto;
   }
 
-  /* CTA plus petite et plus fine */
+  /* CTA smaller */
   .cta button {
     font-size: 11px;
     padding: 6px 10px;
@@ -185,11 +190,12 @@ nav {
 
   .cta button img {
     height: 16px;
-    width: auto;
   }
 }
 
-/* overlay (couvre tout et ferme le menu au clic) */
+/* ===================== */
+/* MENU OVERLAY */
+/* ===================== */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -197,29 +203,12 @@ nav {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
-  z-index: 900; /* sous le burger mais au-dessus du contenu */
+  z-index: 900;
   pointer-events: none;
 }
 
-/* quand overlay actif */
 .menu-overlay.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-}
-
-/* on force le z-index pour que burger reste cliquable */
-.burger {
-  z-index: 1001; /* plus haut que le menu (1000) */
-}
-
-/* menu latéral : s'assurer qu'il soit au-dessus de l'overlay visuellement */
-.nav-links {
-  z-index: 1000;
-  /* ... autres règles déjà présentes ... */
-}
-
-/* lorsque le menu est actif */
-.nav-links.active {
-  left: 0; /* ta règle existante gère le slide */
 }
