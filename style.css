@@ -97,7 +97,7 @@ nav {
 }
 
 .burger {
-  display: none;
+  display: none; /* Caché sur PC */
   font-size: 28px;
   color: #1c95eb;
   cursor: pointer;
@@ -106,20 +106,39 @@ nav {
 }
 
 .burger.open {
-  transform: rotate(90deg); 
+  transform: rotate(90deg); /* effet visuel d’ouverture */
 }
 
+/* ==== VERSION MOBILE AMÉLIORÉE ==== */
 @media (max-width: 768px) {
   nav {
     justify-content: space-between;
+    padding: 8px 16px;
   }
 
+  /* Bouton burger plus petit et mieux centré */
+  .burger {
+    display: block;
+    font-size: 22px; /* Taille plus équilibrée */
+    color: #1c95eb;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1001;
+    transition: transform 0.3s;
+    padding: 4px;
+  }
+
+  .burger.open {
+    transform: rotate(90deg);
+  }
+
+  /* Le menu principal (slide gauche) */
   .nav-links {
     position: fixed;
     top: 0;
-    left: -100%; 
+    left: -100%;
     width: 70%;
-    max-width: 280px;
+    max-width: 260px;
     height: 100vh;
     background-color: #1c95eb;
     flex-direction: column;
@@ -145,49 +164,62 @@ nav {
     color: #30ce27;
   }
 
-  .burger {
-    display: block;
-  }
-
+  /* Logo centré, taille ajustée */
   .logo {
     margin: 0 auto;
+    font-size: 14px;
   }
 
+  .logo img {
+    height: 45px; /* Taille réduite sur mobile */
+    width: auto;
+  }
+
+  /* CTA plus petite et plus fine */
   .cta button {
-    font-size: 12px;
-    padding: 8px 14px;
+    font-size: 11px;
+    padding: 6px 10px;
+    gap: 4px;
+    border-radius: 40px;
   }
 
   .cta button img {
-    height: 20px;
+    height: 16px;
+    width: auto;
   }
+}
 
-  .menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-    z-index: 900;
-    pointer-events: none;
-  }
-  
-  .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-  
-  .burger {
-    z-index: 1001;
-  }
-  
-  .nav-links {
-    z-index: 1000;
-  }
-  
-  .nav-links.active {
-    left: 0; 
-  }
+/* overlay (couvre tout et ferme le menu au clic) */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  z-index: 900; /* sous le burger mais au-dessus du contenu */
+  pointer-events: none;
+}
+
+/* quand overlay actif */
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* on force le z-index pour que burger reste cliquable */
+.burger {
+  z-index: 1001; /* plus haut que le menu (1000) */
+}
+
+/* menu latéral : s'assurer qu'il soit au-dessus de l'overlay visuellement */
+.nav-links {
+  z-index: 1000;
+  /* ... autres règles déjà présentes ... */
+}
+
+/* lorsque le menu est actif */
+.nav-links.active {
+  left: 0; /* ta règle existante gère le slide */
 }
