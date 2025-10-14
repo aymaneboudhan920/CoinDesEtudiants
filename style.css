@@ -224,6 +224,10 @@ nav {
 
   .menu-cta {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
   background-color: #30ce27;
   color: #fff;
   border: none;
