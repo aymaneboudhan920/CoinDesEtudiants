@@ -97,7 +97,7 @@ nav {
 }
 
 .burger {
-  display: none; /* Caché sur PC */
+  display: none;
   font-size: 28px;
   color: #1c95eb;
   cursor: pointer;
@@ -106,24 +106,22 @@ nav {
 }
 
 .burger.open {
-  transform: rotate(90deg); /* effet visuel d’ouverture */
+  transform: rotate(90deg); 
 }
 
-/* ==== VERSION MOBILE ==== */
 @media (max-width: 768px) {
   nav {
     justify-content: space-between;
   }
 
-  /* Le menu principal est caché par défaut sur mobile */
   .nav-links {
     position: fixed;
     top: 0;
-    left: -100%; /* Caché hors écran */
+    left: -100%; 
     width: 70%;
     max-width: 280px;
     height: 100vh;
-    background-color: #1c95eb; /* Bleu */
+    background-color: #1c95eb;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -134,12 +132,10 @@ nav {
     z-index: 1000;
   }
 
-  /* Quand actif : le menu glisse de la gauche */
   .nav-links.active {
     left: 0;
   }
 
-  /* Style des liens dans le menu latéral */
   .nav-links li a {
     color: #fff;
     font-size: 18px;
@@ -149,17 +145,14 @@ nav {
     color: #30ce27;
   }
 
-  /* Le bouton burger est affiché */
   .burger {
     display: block;
   }
 
-  /* Le logo se recentre */
   .logo {
     margin: 0 auto;
   }
 
-  /* La CTA reste à droite */
   .cta button {
     font-size: 12px;
     padding: 8px 14px;
@@ -170,37 +163,30 @@ nav {
   }
 }
 
-/* overlay (couvre tout et ferme le menu au clic) */
 .menu-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.35);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-  z-index: 900; /* sous le burger mais au-dessus du contenu */
+  transition: op
   pointer-events: none;
 }
 
-/* quand overlay actif */
 .menu-overlay.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-/* on force le z-index pour que burger reste cliquable */
 .burger {
-  z-index: 1001; /* plus haut que le menu (1000) */
+  z-index: 1001;
 }
 
-/* menu latéral : s'assurer qu'il soit au-dessus de l'overlay visuellement */
 .nav-links {
   z-index: 1000;
-  /* ... autres règles déjà présentes ... */
 }
 
-/* lorsque le menu est actif */
 .nav-links.active {
-  left: 0; /* ta règle existante gère le slide */
+  left: 0; 
 }
